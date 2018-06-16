@@ -1,7 +1,5 @@
 FROM golang
 
-RUN apk update && apk add git
-
 COPY . $GOPATH/src/github.com/hunterlong/balancebadge/
 WORKDIR $GOPATH/src/github.com/hunterlong/balancebadge/
 RUN go get -d -v
