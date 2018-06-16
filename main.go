@@ -8,6 +8,8 @@ import (
 	"bytes"
 	"os"
 	"strings"
+	"html/template"
+	"io/ioutil"
 )
 
 var (
@@ -44,17 +46,33 @@ func Router() *mux.Router {
 
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	badge := []byte(`<svg xmlns="http://www.w3.org/2000/svg" width="1" height="20"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><mask id="a"><rect width="120" height="20" rx="3" fill="#fff"/></mask><g mask="url(#a)"><path fill="#555" d="M0 0h80v20H0z"/><path fill="#4c1" d="M54 0h80v20H54z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11"><text x="28" y="15" fill="#010101" fill-opacity=".3">h7BowIw</text><text x="28" y="14">h7BowIw</text><text x="78" y="15" fill="#010101" fill-opacity=".3">12.533</text><text x="78" y="14">12.533</text></g></svg>`)
+
+	file, _ := ioutil.ReadFile("svg.xml")
+
+	fmt.Println(file)
+
+	temp := template.New("svg")
+	temp.Parse(string(file))
+
+	bb := &Badge{
+		Coin: "btc",
+		Address: "0x0x0x0x00x0x0x0x0x0",
+	}
+
 	w.Header().Set("Content-Type", "image/svg+xml")
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-	w.Write(badge)
+
+	temp.Execute(w, bb)
 }
 
 
 func CryptoBalance(coin, address string) float64 {
 	var balance float64
+	var err error
 	switch coin {
-	case "btc": balance = BitcoinBalance(address)
+	case "btc":
+		balance, err = BitcoinBalance(address)
+		if err != nil { return 0 }
 	}
 	if balance == 0 {
 		balance = 0.0
@@ -66,7 +84,38 @@ type Badge struct {
 	Coin string
 	Address string
 	Type string
+	Width string
+	Height string
+	LeftColor string
+	LeftSize string
+	RightColor string
+	RightSize string
 }
+
+
+func (b *Badge) Normal() string {
+	leftWidth := "60"
+	rightWidth := "120"
+	fullWidth := leftWidth + rightWidth
+	balance := CryptoBalance(b.Coin, b.Address)
+	addressFormat := b.Address[0:7]
+	coin := strings.ToUpper(b.Coin)
+
+	leftColor := "#555555"
+	rightColor := "#97CA00"
+
+	clip := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%v" height="20"><linearGradient id="b" x2="0" y2="100%%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>`, fullWidth)
+	clip += fmt.Sprintf(`<clipPath id="a"><rect width="134" height="20" rx="3" fill="#fff"/></clipPath>`)
+	clip += fmt.Sprintf(`<g clip-path="url(#a)"><path fill="%v" d="M0 0h%vv20H0z"/><path fill="%v" d="M%v 0h%vv20H%vz"/><path fill="url(#b)" d="M0 0h%vv20H0z"/></g>`, leftColor, leftWidth, rightColor, leftWidth, rightWidth, leftWidth, fullWidth)
+	clip += fmt.Sprintf(`<g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110">`)
+	clip += fmt.Sprintf(`<text x="305" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="490">%v</text>`, addressFormat)
+	clip += fmt.Sprintf(`<text x="305" y="140" transform="scale(.1)" textLength="490">%v</text>`, addressFormat)
+	clip += fmt.Sprintf(`<text x="955" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="650">%0.3f %v</text>`, balance, coin)
+	clip += fmt.Sprintf(`<text x="955" y="140" transform="scale(.1)" textLength="650">%0.3f %v</text>`, balance, coin)
+	clip += fmt.Sprintf(`</g></svg>`)
+	return clip
+}
+
 
 func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -75,24 +124,16 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	badgeType, _ := vars["type"]
 
 	badge := &Badge{
-		coin,
-		address,
-		badgeType,
+		Coin: coin,
+		Address: address,
+		Type: badgeType,
 	}
 
 	fmt.Println(badge)
 
-	balance := CryptoBalance(coin, address)
+	badgeSvg := badge.Normal()
 
-	fmt.Println(badgeType, coin)
-
-	addressFormat := address[0:7]
-
-	coin = strings.ToUpper(coin)
-
-	badgeData := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="134" height="20"><linearGradient id="b" x2="0" y2="100%%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="134" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path fill="#555" d="M0 0h59v20H0z"/><path fill="#97CA00" d="M59 0h75v20H59z"/><path fill="url(#b)" d="M0 0h134v20H0z"/></g><g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110"><text x="305" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="490">%v</text><text x="305" y="140" transform="scale(.1)" textLength="490">%v</text><text x="955" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="650">%0.3f %v</text><text x="955" y="140" transform="scale(.1)" textLength="650">%0.3f %v</text></g> </svg>`, addressFormat, addressFormat, balance, coin, balance, coin)
-
-	badgeD := []byte(badgeData)
+	badgeD := []byte(badgeSvg)
 
 	WriteBadge(badgeD, w)
 }
