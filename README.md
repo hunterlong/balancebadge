@@ -2,3 +2,6 @@
 
 [![Balance](https://balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f)](https://etherscan.io/address/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f)
 
+## Features Checklist
+- [ ] Add server param for a custom server endpoint
+- [ ] Add label param for left side label
