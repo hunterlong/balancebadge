@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang
 
 RUN apk update && apk add git
 
