@@ -2,7 +2,7 @@ FROM alpine
 
 RUN apk add --no-cache libc6-compat
 
-ENV VERSION="v0.13"
+ENV VERSION="v0.1"
 
 WORKDIR /app
 RUN wget -q https://github.com/hunterlong/balancebadge/releases/download/$VERSION/balancebadge-linux-x64
