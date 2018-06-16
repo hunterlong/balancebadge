@@ -25,5 +25,3 @@ func BitcoinBalance(address string) (float64, error) {
 	amount = amount * 0.00000001
 	return amount, err
 }
-
-

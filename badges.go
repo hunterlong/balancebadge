@@ -1,9 +1,5 @@
 package main
 
-
-
 func GreenBalance() {
-
-
 
 }

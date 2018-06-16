@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60120" height="20">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ .Width }}" height="20">
     <linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
         <stop offset="1" stop-opacity=".1"/>
     </linearGradient>
     <clipPath id="a">
-        <rect width="134" height="20" rx="3" fill="#fff"/>
+        <rect width="{{ .Width }}" height="20" rx="3" fill="#fff"/>
     </clipPath>
-    <g clip-path="url(#a)"><path fill="#555555" d="M0 0h60v20H0z"/>
-        <path fill="#97CA00" d="M60 0h120v20H60z"/>
-        <path fill="url(#b)" d="M0 0h60120v20H0z"/>
+    <g clip-path="url(#a)"><path fill="{{ .LeftColor }}" d="M0 0h{{ .LeftSize }}v20H0z"/>
+        <path fill="#97CA00" d="M{{ .LeftSize }} 0h{{ .Width }}v20H{{ .LeftSize }}z"/>
+        <path fill="url(#b)" d="M0 0h{{ .LeftSize }}{{ .Width }}v20H0z"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110">
-        <text x="305" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="490">1F1tAaz</text>
-        <text x="305" y="140" transform="scale(.1)" textLength="490">1F1tAaz</text>
-        <text x="955" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="650">0.000 BTC</text>
-        <text x="955" y="140" transform="scale(.1)" textLength="650">0.000 BTC</text>
+        <text x="305" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="490">{{ .Address }}</text>
+        <text x="305" y="140" transform="scale(.1)" textLength="490">{{ .Address }}</text>
+        <text x="955" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="650">{{ .Balance }} {{ .Coin }}</text>
+        <text x="955" y="140" transform="scale(.1)" textLength="650">{{ .Balance }} {{ .Coin }}</text>
     </g>
 </svg>
