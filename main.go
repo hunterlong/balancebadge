@@ -22,11 +22,16 @@ func GetEnv() {
 	BTCapi = os.Getenv("BTC")
 }
 
-func main() {
-
-	eth, _ = ethclient.Dial("https://eth.coinapp.io")
-
+func init() {
+	var err error
 	GetEnv()
+	eth, err = ethclient.Dial("https://eth.coinapp.io")
+	if err != nil {
+		panic(err)
+	}
+}
+
+func main() {
 	fmt.Println("BALANCE BADGE running on http://localhost:9090")
 	r := Router()
 	srv := &http.Server{
