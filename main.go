@@ -9,32 +9,40 @@ import (
 	"html/template"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 )
 
 var (
-	BTCapi string
-	svgBox *rice.Box
+	BTCapi  string
+	LTCapi  string
+	ETHapi  string
+	svgBox  *rice.Box
+	svgData string
 )
 
 func GetEnv() {
 	BTCapi = os.Getenv("BTC")
+	LTCapi = os.Getenv("LTC")
+	ETHapi = os.Getenv("ETH")
 }
 
 func init() {
 	var err error
 	GetEnv()
-	eth, err = ethclient.Dial("https://eth.coinapp.io")
+	eth, err = ethclient.Dial(ETHapi)
 	if err != nil {
 		panic(err)
 	}
 }
 
 func main() {
-
+	var err error
 	svgBox = rice.MustFindBox("svg")
+	svgData, err = svgBox.String("svg.xml")
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	fmt.Println("BALANCE BADGE running on http://localhost:9090")
 	r := Router()
@@ -51,6 +59,7 @@ func main() {
 func Router() *mux.Router {
 	r := mux.NewRouter()
 	r.Handle("/", http.HandlerFunc(IndexHandler))
+	r.Handle("/{coin}/{address}", http.HandlerFunc(NormalBadgeHandler))
 	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
 	return r
 }
@@ -59,18 +68,22 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "https://docs.balancebadge.io", http.StatusSeeOther)
 }
 
-func CryptoBalance(coin, address string) float64 {
-	var balance float64
+func CryptoBalance(coin, address string) string {
+	var balance string
 	var err error
 	switch coin {
 	case "btc":
-		balance, err = BitcoinBalance(address)
+		balance, err = BitcoinBalance(BTCapi, address)
 		if err != nil {
-			return 0
+			return "0"
 		}
-	}
-	if balance == 0 {
-		balance = 0.0
+	case "ltc":
+		balance, err = BitcoinBalance(LTCapi, address)
+		if err != nil {
+			return "0"
+		}
+	case "eth":
+		balance = EthBalance(address)
 	}
 	return balance
 }
@@ -90,14 +103,7 @@ type Badge struct {
 }
 
 func (b *Badge) Normal() *Badge {
-	var balance float64
-	if b.Coin == "eth" {
-		ethBal := EthBalance(b.Address)
-		balance, _ = strconv.ParseFloat(ethBal, 10)
-	} else {
-		balance = CryptoBalance(b.Coin, b.Address)
-	}
-
+	balance := CryptoBalance(b.Coin, b.Address)
 	rightColor := "97CA00"
 
 	if b.RightColor != "" {
@@ -110,12 +116,10 @@ func (b *Badge) Normal() *Badge {
 		label = b.Label
 	}
 
-	fmt.Println(rightColor)
-
 	badge := &Badge{
 		Coin:       strings.ToUpper(b.Coin),
 		Address:    b.Address[0:7],
-		Balance:    fmt.Sprintf("%0.3f", balance),
+		Balance:    fmt.Sprintf("%v", balance),
 		Label:      label,
 		Type:       b.Type,
 		Height:     20,
@@ -133,17 +137,11 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	coin, _ := vars["coin"]
 	address, _ := vars["address"]
 	badgeType, _ := vars["type"]
-
 	color := r.FormValue("color")
 	label := r.FormValue("label")
-	format := r.FormValue("format")
 
-	file, err := svgBox.String("svg.xml")
-	if err != nil {
-		fmt.Println(err)
-	}
 	temp := template.New("svg")
-	temp.Parse(string(file))
+	temp.Parse(string(svgData))
 
 	badge := &Badge{
 		Coin:       coin,
@@ -155,19 +153,9 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 
 	badgeSvg := badge.Normal()
 
-	if format=="txt" {
-		temp.Execute(w, badgeSvg)
-	} else {
-		w.Header().Set("Content-Type", "image/svg+xml")
-		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-		temp.Execute(w, badgeSvg)
-	}
-}
-
-func WriteBadge(badge []byte, w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "image/svg+xml")
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-	w.Write(badge)
+	temp.Execute(w, badgeSvg)
 }
 
 func httpGet(url string, method string, data []byte) (*http.Response, error) {

@@ -16,7 +16,9 @@ var (
 
 func EthBalance(address string) string {
 	balance, _ := eth.BalanceAt(context.TODO(), common.HexToAddress(address), nil)
-	return BigIntDecimal(balance, 18)
+	amount := BigIntDecimal(balance, 18)
+	amountFloat, _ := strconv.ParseFloat(amount, 10)
+	return fmt.Sprintf("%0.3f", amountFloat)
 }
 
 func BigIntDecimal(balance *big.Int, decimals int64) string {

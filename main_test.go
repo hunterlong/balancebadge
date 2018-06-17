@@ -6,6 +6,21 @@ import (
 )
 
 func TestEthBalance(t *testing.T) {
-	balance := EthBalance("0x4f70Dc5Da5aCf5e71905c3a8473a6D8a7E7Ba4c5")
+	balance := EthBalance("0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f")
+	t.Log("balance: ", balance)
+	assert.NotZero(t, balance)
+}
+
+func TestBtcBalance(t *testing.T) {
+	balance, err := BitcoinBalance(BTCapi, "18CEdeCbtvPivNeUVmwaTMbvCMreFvbe8")
+	t.Log("balance: ", balance)
+	assert.Nil(t, err)
+	assert.NotZero(t, balance)
+}
+
+func TestLtcBalance(t *testing.T) {
+	balance, err := BitcoinBalance(LTCapi, "LMrS5XQMR233haqDqgs63oAtiWaA2Dj8c9")
+	t.Log("balance: ", balance)
+	assert.Nil(t, err)
 	assert.NotZero(t, balance)
 }
