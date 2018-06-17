@@ -8,7 +8,7 @@ import (
 
 func BitcoinBalance(address string) (float64, error) {
 	var url string
-	url = fmt.Sprintf(BTCapi+"/api/addr/%v/balance", address)
+	url = fmt.Sprintf(BTCapi+"/addr/%v/balance", address)
 	resp, err := httpGet(url, "GET", []byte(""))
 	if err != nil {
 		return 0, err

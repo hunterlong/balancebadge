@@ -56,32 +56,7 @@ func Router() *mux.Router {
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	coin := "eth"
-	address := "0x4f70Dc5Da5aCf5e71905c3a8473a6D8a7E7Ba4c5"
-	badgeType := "normal"
-
-	file, err := svgBox.String("svg.xml")
-
-	if err != nil {
-		fmt.Println(err)
-	}
-	temp := template.New("svg")
-	temp.Parse(string(file))
-
-	badge := &Badge{
-		Coin:    coin,
-		Address: address,
-		Type:    badgeType,
-	}
-
-	badgeSvg := badge.Normal()
-
-	fmt.Println(badgeSvg)
-
-	//w.Header().Set("Content-Type", "image/svg+xml")
-	//w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-
-	temp.Execute(w, badgeSvg)
+	http.Redirect(w, r, "https://docs.balancebadge.io", http.StatusSeeOther)
 }
 
 func CryptoBalance(coin, address string) float64 {
@@ -157,8 +132,6 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	badgeSvg := badge.Normal()
-
-	fmt.Println(badgeSvg)
 
 	w.Header().Set("Content-Type", "image/svg+xml")
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
