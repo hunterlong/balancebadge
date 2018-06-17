@@ -47,7 +47,7 @@ func main() {
 func Router() *mux.Router {
 	r := mux.NewRouter()
 	r.Handle("/", http.HandlerFunc(IndexHandler))
-	r.Handle("/{coin}/{address}", http.HandlerFunc(NormalBadgeHandler))
+	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
 	return r
 }
 
