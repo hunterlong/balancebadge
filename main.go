@@ -70,8 +70,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(badgeSvg)
 
-	w.Header().Set("Content-Type", "image/svg+xml")
-	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	//w.Header().Set("Content-Type", "image/svg+xml")
+	//w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
 	temp.Execute(w, badgeSvg)
 }
