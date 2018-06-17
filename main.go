@@ -79,6 +79,7 @@ type Badge struct {
 	Coin       string
 	Address    string
 	Balance    string
+	Label      string
 	Type       string
 	Width      int
 	Height     int
@@ -97,15 +98,30 @@ func (b *Badge) Normal() *Badge {
 		balance = CryptoBalance(b.Coin, b.Address)
 	}
 
+	rightColor := "97CA00"
+
+	if b.RightColor != "" {
+		rightColor = b.RightColor
+	}
+
+	label := b.Address[0:7]
+
+	if b.Label != "" {
+		label = b.Label
+	}
+
+	fmt.Println(rightColor)
+
 	badge := &Badge{
 		Coin:       strings.ToUpper(b.Coin),
 		Address:    b.Address[0:7],
 		Balance:    fmt.Sprintf("%0.3f", balance),
+		Label:      label,
 		Type:       b.Type,
 		Height:     20,
-		LeftColor:  "#555555",
+		LeftColor:  "555555",
 		LeftSize:   60,
-		RightColor: "#97CA00",
+		RightColor: rightColor,
 		RightSize:  75,
 	}
 	badge.Width = badge.LeftSize + badge.RightSize
@@ -118,6 +134,10 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	address, _ := vars["address"]
 	badgeType, _ := vars["type"]
 
+	color := r.FormValue("color")
+	label := r.FormValue("label")
+	format := r.FormValue("format")
+
 	file, err := svgBox.String("svg.xml")
 	if err != nil {
 		fmt.Println(err)
@@ -126,17 +146,22 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	temp.Parse(string(file))
 
 	badge := &Badge{
-		Coin:    coin,
-		Address: address,
-		Type:    badgeType,
+		Coin:       coin,
+		Address:    address,
+		Label:      label,
+		Type:       badgeType,
+		RightColor: color,
 	}
 
 	badgeSvg := badge.Normal()
 
-	w.Header().Set("Content-Type", "image/svg+xml")
-	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-
-	temp.Execute(w, badgeSvg)
+	if format=="txt" {
+		temp.Execute(w, badgeSvg)
+	} else {
+		w.Header().Set("Content-Type", "image/svg+xml")
+		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+		temp.Execute(w, badgeSvg)
+	}
 }
 
 func WriteBadge(badge []byte, w http.ResponseWriter) {
