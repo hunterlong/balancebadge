@@ -3,10 +3,10 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/GeertJohan/go.rice"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/gorilla/mux"
 	"html/template"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"strconv"
@@ -16,6 +16,7 @@ import (
 
 var (
 	BTCapi string
+	svgBox *rice.Box
 )
 
 func GetEnv() {
@@ -32,6 +33,9 @@ func init() {
 }
 
 func main() {
+
+	svgBox = rice.MustFindBox("svg")
+
 	fmt.Println("BALANCE BADGE running on http://localhost:9090")
 	r := Router()
 	srv := &http.Server{
@@ -56,7 +60,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	address := "0x4f70Dc5Da5aCf5e71905c3a8473a6D8a7E7Ba4c5"
 	badgeType := "normal"
 
-	file, err := ioutil.ReadFile("svg.xml")
+	file, err := svgBox.String("svg.xml")
+
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -138,7 +143,7 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 	address, _ := vars["address"]
 	badgeType, _ := vars["type"]
 
-	file, err := ioutil.ReadFile("svg.xml")
+	file, err := svgBox.String("svg.xml")
 	if err != nil {
 		fmt.Println(err)
 	}
