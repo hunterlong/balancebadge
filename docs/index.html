@@ -3,15 +3,128 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Balance Badge</title>
 </head>
 <body>
-<h1>Hello, world!</h1>
 
-<img src="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg">
+<div class="container mt-5">
 
-<script src="/js/jquery-3.3.1.slim.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+    <form class="col-8 offset-2">
+        <div class="row">
+            <div class="col">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Address</label>
+                <input type="text" class="form-control" placeholder="Address">
+            </div>
+            <div class="col">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Cryptocurrency</label>
+                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                    <option selected>Choose Coin...</option>
+                    <option value="1">Bitcoin</option>
+                    <option value="2">Litecoin</option>
+                    <option value="3">Ethereum</option>
+                </select>
+            </div>
+            <div class="col">
+                <label class="mr-sm-2" for="inlineFormCustomSelect"></label>
+                <button id="create_badge" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="col-8 offset-2">
+
+        <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">HTML</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2">
+                 <a href="https://etherscan.io/address/0x6697430135bac88c84217dbe8719dab9adef7a7e">
+                    <img src="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg">
+                </a>
+                </textarea>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Markup</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2">
+                    ![Travis](https://img.shields.io/travis/USER/REPO.svg)
+                </textarea>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">reStructuredText</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2">
+                    .. image:: https://img.shields.io/travis/USER/REPO.svg   :alt: Travis
+                </textarea>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">AsciiDoc</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2">
+                    image:https://img.shields.io/travis/USER/REPO.svg[Travis]
+                </textarea>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+
+<div class="col-8 offset-2">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Badge</th>
+            <th scope="col">Information</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <a href="https://etherscan.io/address/0x6697430135bac88c84217dbe8719dab9adef7a7e">
+                    <img src="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg">
+                </a>
+            </td>
+            <td>Ethereum Badge</td>
+        </tr>
+
+        <tr>
+            <td>
+                <a href="https://blockchain.info/address/141JSRmgzv4km7KT1HdAx5hQnnYJjGb9PG">
+                    <img src="https://img.balancebadge.io/btc/141JSRmgzv4km7KT1HdAx5hQnnYJjGb9PG.svg">
+                </a>
+            </td>
+            <td>Bitcoin Badge</td>
+        </tr>
+
+        <tr>
+            <td>
+                <a href="https://ltc.coinapp.io/address/LLgJTbzZMsRTCUF1NtvvL9SR1a4pVieW89">
+                    <img src="https://img.balancebadge.io/ltc/LLgJTbzZMsRTCUF1NtvvL9SR1a4pVieW89.svg">
+                </a>
+            </td>
+            <td>Litecoin Badge</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+</div>
+
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
