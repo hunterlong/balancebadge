@@ -11,11 +11,12 @@ import (
 )
 
 var (
-	eth *ethclient.Client
+	eth     *ethclient.Client
+	ropsten *ethclient.Client
 )
 
-func EthBalance(address string) string {
-	balance, _ := eth.BalanceAt(context.TODO(), common.HexToAddress(address), nil)
+func EthBalance(api *ethclient.Client, address string) string {
+	balance, _ := api.BalanceAt(context.TODO(), common.HexToAddress(address), nil)
 	amount := BigIntDecimal(balance, 18)
 	amountFloat, _ := strconv.ParseFloat(amount, 10)
 	return fmt.Sprintf("%0.3f", amountFloat)

@@ -23,5 +23,5 @@ func BitcoinBalance(endpoint, address string) (string, error) {
 		return "0", err
 	}
 	amount = amount * 0.00000001
-	return fmt.Sprintf("%f", amount), err
+	return fmt.Sprintf("%0.3f", amount), err
 }

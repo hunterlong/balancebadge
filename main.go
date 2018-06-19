@@ -14,30 +14,45 @@ import (
 )
 
 var (
-	BTCapi  string
-	LTCapi  string
-	ETHapi  string
-	svgBox  *rice.Box
-	svgData string
+	BTCapi     string
+	BTCTESTapi string
+	LTCapi     string
+	LTCTESTapi string
+	ETHapi     string
+	ROPSTENapi string
+	svgBox     *rice.Box
+	svgData    string
 )
 
 func GetEnv() {
 	BTCapi = os.Getenv("BTC")
+	BTCTESTapi = os.Getenv("BTCTEST")
 	LTCapi = os.Getenv("LTC")
+	LTCTESTapi = os.Getenv("LTCTEST")
 	ETHapi = os.Getenv("ETH")
+	ROPSTENapi = os.Getenv("ROPSTEN")
 }
 
-func init() {
+func LoadEthBlockchains() error {
 	var err error
-	GetEnv()
 	eth, err = ethclient.Dial(ETHapi)
 	if err != nil {
 		panic(err)
 	}
+	ropsten, err = ethclient.Dial(ROPSTENapi)
+	if err != nil {
+		panic(err)
+	}
+	return err
 }
 
 func main() {
-	var err error
+	GetEnv()
+	err := LoadEthBlockchains()
+	if err != nil {
+		panic(err)
+	}
+
 	svgBox = rice.MustFindBox("svg")
 	svgData, err = svgBox.String("svg.xml")
 	if err != nil {
@@ -59,7 +74,6 @@ func main() {
 func Router() *mux.Router {
 	r := mux.NewRouter()
 	r.Handle("/", http.HandlerFunc(IndexHandler))
-	r.Handle("/{coin}/{address}", http.HandlerFunc(NormalBadgeHandler))
 	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
 	return r
 }
@@ -75,6 +89,13 @@ func CryptoBalance(coin, address string) string {
 	case "btc":
 		balance, err = BitcoinBalance(BTCapi, address)
 		if err != nil {
+			fmt.Println(err)
+			return "0"
+		}
+	case "btctest":
+		balance, err = BitcoinBalance(BTCTESTapi, address)
+		if err != nil {
+			fmt.Println(err)
 			return "0"
 		}
 	case "ltc":
@@ -82,8 +103,15 @@ func CryptoBalance(coin, address string) string {
 		if err != nil {
 			return "0"
 		}
+	case "ltctest":
+		balance, err = BitcoinBalance(LTCTESTapi, address)
+		if err != nil {
+			return "0"
+		}
 	case "eth":
-		balance = EthBalance(address)
+		balance = EthBalance(eth, address)
+	case "ropsten":
+		balance = EthBalance(ropsten, address)
 	}
 	return balance
 }
