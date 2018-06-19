@@ -117,17 +117,19 @@ func CryptoBalance(coin, address string) string {
 }
 
 type Badge struct {
-	Coin       string
-	Address    string
-	Balance    string
-	Label      string
-	Type       string
-	Width      int
-	Height     int
-	LeftColor  string
-	LeftSize   int
-	RightColor string
-	RightSize  int
+	Coin          string
+	Address       string
+	Balance       string
+	Label         string
+	Type          string
+	Width         int
+	Height        int
+	LeftColor     string
+	LeftSize      int
+	RightColor    string
+	RightSize     int
+	RightTextSize int
+	RightTextX    int
 }
 
 func (b *Badge) Normal() *Badge {
@@ -144,17 +146,35 @@ func (b *Badge) Normal() *Badge {
 		label = b.Label
 	}
 
+	rightSize := len(balance) * 11
+	rightTextSize := len(balance) * 98
+	rightTextX := len(balance) * 130
+
+	if rightSize < 67 {
+		rightSize = 67
+	}
+
+	if rightTextSize < 560 {
+		rightTextSize = 560
+	}
+
+	if rightTextX < 925 {
+		rightTextX = 925
+	}
+
 	badge := &Badge{
-		Coin:       strings.ToUpper(b.Coin),
-		Address:    b.Address[0:7],
-		Balance:    fmt.Sprintf("%v", balance),
-		Label:      label,
-		Type:       b.Type,
-		Height:     20,
-		LeftColor:  "555555",
-		LeftSize:   60,
-		RightColor: rightColor,
-		RightSize:  75,
+		Coin:          strings.ToUpper(b.Coin),
+		Address:       b.Address[0:7],
+		Balance:       balance,
+		Label:         label,
+		Type:          b.Type,
+		Height:        20,
+		LeftColor:     "555555",
+		LeftSize:      60,
+		RightColor:    rightColor,
+		RightSize:     rightSize,
+		RightTextSize: rightTextSize,
+		RightTextX:    rightTextX,
 	}
 	badge.Width = badge.LeftSize + badge.RightSize
 	return badge
