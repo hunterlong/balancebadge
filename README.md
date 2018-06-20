@@ -1,11 +1,13 @@
 # BalanceBadge.io
 
-> There's a badge for everything else, now you can have a badge for your cryptocurrency balances. 
+> There's a badge for everything else, now you can have a badge for your cryptocurrency balances. Fetch balances badges for Bitcoin, Litecoin, Ethereum, and all ERC20 Tokens to be used on your website or anywhere else. 
 
-[![Balance](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57.svg?label=Donations&color=green)](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57.svg?label=Donations&color=green) [![Balance](https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue)](https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue) [![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green)](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue)](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)
+<p align="center">
+<a href="https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57.svg?label=Donations&color=green"><img src="https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57.svg?label=Donations&color=green"></a> <a href="https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue"><img src="https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue"></a> <a href="https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green"><img src="https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green"></a> <a href="https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange"><img src="https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange"></a>
+</p>
 
 ## Badge URL
-You can easily format a badge by inserting your Coin type and the address. Click on a badge to see the direct URL for your address. [![Balance](https://img.balancebadge.io/btc/1Lk1p9yr2StBnGFtMeqnLHpf8oGL3WdeBM.svg)](https://img.balancebadge.io/btc/1Lk1p9yr2StBnGFtMeqnLHpf8oGL3WdeBM.svg)
+You can easily format a badge by inserting your Coin type and the address. [![Balance](https://img.balancebadge.io/btc/1Lk1p9yr2StBnGFtMeqnLHpf8oGL3WdeBM.svg)](https://img.balancebadge.io/btc/1Lk1p9yr2StBnGFtMeqnLHpf8oGL3WdeBM.svg)
 ```
 https://img.balancebadge.io/<COIN>/<ADDRESS>.svg
 ```
