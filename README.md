@@ -30,7 +30,7 @@ Balance Badge will quickly serve you a badge with up-to-date balance and address
 ## Ethereum and ERC20 Token Badges
 Balance Badge also works on Ethereum's ERC20 Tokens using TokenBalance.com API. 
 - [![Balance](https://img.balancebadge.io/eth/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/eth/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
-- [![Balance](https://img.balancebadge.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52/0x751b934e7496e437503d74d0679a45e49c0b7071.svg)](https://img.balancebadge.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52/0x751b934e7496e437503d74d0679a45e49c0b7071.svg)
+- [![Balance](https://img.balancebadge.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52/0x751b934e7496e437503d74d0679a45e49c0b7071.svg?color=cyan)](https://img.balancebadge.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52/0x751b934e7496e437503d74d0679a45e49c0b7071.svg?color=cyan)
 - [![Balance](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
 - [![Balance](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx/usd.svg)](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx/usd.svg)
 
