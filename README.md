@@ -20,10 +20,10 @@ https://img.balancebadge.io/token/<TOKEN>/<ADDRESS>.svg
 
 ## Bitcoin and Litecoin Badges
 Balance Badge will quickly serve you a badge with up-to-date balance and address information. Click on a badge below to see how you can insert your own address.
-- [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
-- [![Balance](https://img.balancebadge.io/btctest/2N8GSUUX8rzQdfTw5NvsBNMDB6UhJK2HnAa.svg)](https://img.balancebadge.io/btctest/2N8GSUUX8rzQdfTw5NvsBNMDB6UhJK2HnAa.svg)
-- [![Balance](https://img.balancebadge.io/ltc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/ltc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
-- [![Balance](https://img.balancebadge.io/ltctest/mwumPyMeruBENo92MdQ2hTngzvALf9w84c.svg)](https://img.balancebadge.io/ltctest/mwumPyMeruBENo92MdQ2hTngzvALf9w84c.svg)
+- [![Balance](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg)](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg)
+- [![Balance](https://img.balancebadge.io/btctest/mjszQZsfTUAHg6hv98p6g53f9KsqbKZMNM.svg)](https://img.balancebadge.io/btctest/mjszQZsfTUAHg6hv98p6g53f9KsqbKZMNM.svg)
+- [![Balance](https://img.balancebadge.io/ltc/LRu7PdLbK2m7Cnqvwc7JQwLr5uZkcPLiyv.svg)](https://img.balancebadge.io/ltc/LRu7PdLbK2m7Cnqvwc7JQwLr5uZkcPLiyv.svg)
+- [![Balance](https://img.balancebadge.io/ltctest/mos1r34RqU2XRkH5aqnhhYETLSRQyot3fx.svg)](https://img.balancebadge.io/ltctest/mos1r34RqU2XRkH5aqnhhYETLSRQyot3fx.svg)
 
 ## Ethereum and ERC20 Token Badges
 Balance Badge also works on Ethereum's ERC20 Tokens using TokenBalance.com API. 
@@ -34,7 +34,7 @@ Balance Badge also works on Ethereum's ERC20 Tokens using TokenBalance.com API.
 
 ## Customize Badge
 You can send parameters with the SVG request to customize your badge on the fly. You can change the badge text on the left and change the color using hex code or simple english.
-- [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg?label=MtGOX)](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg?label=MtGOX) `?label=MtGox` Text for the left side of the badge
+- [![Balance](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg?label=MtGOX)](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg?label=MtGOX) `?label=MtGox` Text for the left side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121) `?color=ffb121` Hex color for the right side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red) `?color=red` 
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=blue)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=blue) `?color=blue` 
