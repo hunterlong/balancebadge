@@ -1,18 +1,22 @@
-# BalanceBadge.io [![Build Status](https://travis-ci.com/hunterlong/balancebadge.svg?branch=master)](https://travis-ci.com/hunterlong/balancebadge)
+# BalanceBadge.io 
+
+> There's a badge for everything else, now you can have a badge for your cryptocurrency balances. 
+
+[![Balance](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57/usd.svg?label=Donations&color=green)](https://etherscan.io/address/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57) [![Balance](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57/usd.svg?label=Donations&color=green)](https://etherscan.io/address/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57)
 There's a badge for everything else, now you can have a badge for your cryptocurrency balances. 
 
 [![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green)](https://etherscan.io/address/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B)
 
 ## Badge URL
-You can easily format a badge by inserting your Coin type and the address.
+You can easily format a badge by inserting your Coin type and the address. ![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg) 
 ```
 https://img.balancebadge.io/<COIN>/<ADDRESS>.svg
 ```
-You can also have a badge automatically converted into USD with the image below.
+You can also have a badge automatically converted into USD with the image below. [![Balance](https://img.balancebadge.io/eth/0x9ea0c535b3eb166454c8ccbaba86850c8df3ee57/usd.svg)](https://etherscan.io/address/0x9ea0c535b3eb166454c8ccbaba86850c8df3ee57)
 ```
 https://img.balancebadge.io/<COIN>/<ADDRESS>/usd.svg
 ```
-But wait, there's more! Easily get a ERC20 Token Balance Badge with your current balance.
+But wait, there's more! Easily get a ERC20 Token Balance Badge with your current balance. [![Balance](https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue)](https://etherscan.io/address/0x9ea0c535b3eb166454c8ccbaba86850c8df3ee57)
 ```
 https://img.balancebadge.io/token/<TOKEN>/<ADDRESS>.svg
 ```
@@ -37,4 +41,6 @@ You can send parameters with the SVG request to customize your badge on the fly.
 - [x] Bitcoin `btc` [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://blockchain.info/address/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx)
 - [x] Ethereum `eth` [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg)](https://etherscan.io/address/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f)
 - [x] Litecoin `ltc`
+
+
 - [x] ERC20 Tokens `token`
