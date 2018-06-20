@@ -39,7 +39,7 @@ You can send parameters with the SVG request to customize your badge on the fly.
 - [![Balance](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg?label=MtGOX)](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg?label=MtGOX) `?label=MtGox` Text for the left side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121) `?color=ffb121` Hex color for the right side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red) `?color=red` 
-- [![Balance](https://img.balancebadge.io/eth/0x27a169ecd340f1D499B55e78F770ebb4e0b11379.svg?color=blue)](https://img.balancebadge.io/eth/0x27a169ecd340f1D499B55e78F770ebb4e0b11379.svg?color=blue) `?color=blue` 
+- [![Balance](https://img.balancebadge.io/ropsten/0x27a169ecd340f1D499B55e78F770ebb4e0b11379.svg?color=blue)](https://img.balancebadge.io/ropsten/0x27a169ecd340f1D499B55e78F770ebb4e0b11379.svg?color=blue) `?color=blue` 
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?label=Awesome&color=darkpurple)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?label=Awesome&color=darkpurple) `?label=Awesome&color=darkpurple` 
 
 ### Accepted Cryptocurrencies
