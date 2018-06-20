@@ -1,8 +1,8 @@
-# BalanceBadge.io  [![Balance](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57/usd.svg?label=Donations&color=green)](https://etherscan.io/address/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57)
+# BalanceBadge.io
 
 > There's a badge for everything else, now you can have a badge for your cryptocurrency balances. 
 
-[![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green)](https://etherscan.io/address/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B)
+[![Balance](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57/usd.svg?label=Donations&color=green)](https://etherscan.io/address/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57) [![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green)](https://etherscan.io/address/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B)
 
 ## Badge URL
 You can easily format a badge by inserting your Coin type and the address. ![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg) 
