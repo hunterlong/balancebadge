@@ -1,7 +1,7 @@
 # BalanceBadge.io [![Build Status](https://travis-ci.com/hunterlong/balancebadge.svg?branch=master)](https://travis-ci.com/hunterlong/balancebadge)
 There's a badge for everything else, now you can have a badge for your cryptocurrency balances. 
 
-[![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta)](https://etherscan.io/address/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B)
+[![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green)](https://etherscan.io/address/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue)](https://etherscan.io/address/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B)
 
 ## Badge URL
 You can easily format a badge by inserting your Coin type and the address.
