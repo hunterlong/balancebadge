@@ -137,19 +137,19 @@ type Badge struct {
 }
 
 func (b *Badge) Clean() *Badge {
-	b.LeftSize = len(b.Label) * 9
-	b.LeftTextSize = (b.LeftSize * 9) - 65
+	b.LeftSize = (len(b.Label)+1) * 8
+	b.LeftTextSize = b.LeftSize * 8
 	b.LeftTextX = (b.LeftTextSize / 2) + 60
 
 	//leftSum := b.LeftTextSize + b.LeftSize + b.LeftTextX
 
-	fmt.Println("LEFT  ", b.LeftSize, b.LeftTextSize, b.LeftTextX)
+	//fmt.Println("LEFT  ", b.LeftSize, b.LeftTextSize, b.LeftTextX, leftSum)
 
-	b.RightSize = (len(b.Balance) + len(b.Coin)) * 10
-	b.RightTextSize = b.RightSize * 8
-	b.RightTextX = b.LeftTextSize + 510
+	b.RightSize = (len(b.Balance) + len(b.Coin) + 1) * 8
+	b.RightTextSize = (b.RightSize * 8) + 40
+	b.RightTextX = (b.RightTextSize / 2) + (b.LeftSize * 2) + b.LeftTextSize + 60
 
-	fmt.Println("RIGHT ", b.RightSize, b.RightTextSize, b.RightTextX)
+	//fmt.Println("RIGHT ", b.RightSize, b.RightTextSize, b.RightTextX)
 
 	if b.RightSize < 75 {
 		b.RightSize = 75
