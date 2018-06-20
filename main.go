@@ -4,11 +4,14 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/GeertJohan/go.rice"
+	cmc "github.com/coincircle/go-coinmarketcap"
+	"github.com/coincircle/go-coinmarketcap/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -22,6 +25,7 @@ var (
 	ROPSTENapi string
 	svgBox     *rice.Box
 	svgData    string
+	tickers    []*types.Ticker
 )
 
 func GetEnv() {
@@ -48,6 +52,9 @@ func LoadEthBlockchains() error {
 
 func main() {
 	GetEnv()
+
+	CoinMarketCapTicker()
+
 	err := LoadEthBlockchains()
 	if err != nil {
 		panic(err)
@@ -71,11 +78,65 @@ func main() {
 	srv.ListenAndServe()
 }
 
+type TickerObject struct {
+	Tickers []Ticker `json:"data"`
+}
+
+type Ticker struct {
+	ID                int         `json:"id"`
+	Name              string      `json:"name"`
+	Symbol            string      `json:"symbol"`
+	WebsiteSlug       string      `json:"website_slug"`
+	Rank              int         `json:"rank"`
+	CirculatingSupply float64     `json:"circulating_supply"`
+	TotalSupply       float64     `json:"total_supply"`
+	MaxSupply         interface{} `json:"max_supply"`
+	Quotes            struct {
+		USD struct {
+			Price            float64 `json:"price"`
+			Volume24H        float64 `json:"volume_24h"`
+			MarketCap        float64 `json:"market_cap"`
+			PercentChange1H  float64 `json:"percent_change_1h"`
+			PercentChange24H float64 `json:"percent_change_24h"`
+			PercentChange7D  float64 `json:"percent_change_7d"`
+		} `json:"USD"`
+	} `json:"quotes"`
+	LastUpdated int `json:"last_updated"`
+}
+
+func CoinMarketCapTicker() {
+	var err error
+	tickers, err = cmc.Tickers(&cmc.TickersOptions{
+		Start:   0,
+		Limit:   10000,
+		Convert: "USD",
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	btcs := CoinToUSD("btc")
+
+	fmt.Println(btcs)
+}
+
+func CoinToUSD(coin string) float64 {
+	upper := strings.ToUpper(coin)
+	for _, ticker := range tickers {
+		if ticker.Symbol == upper {
+			return ticker.Quotes["USD"].Price
+		}
+	}
+	return 0
+}
+
 func Router() *mux.Router {
 	r := mux.NewRouter()
 	r.Handle("/", http.HandlerFunc(IndexHandler))
 	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
 	r.Handle("/token/{token}/{address}.svg", http.HandlerFunc(TokenBadgeHandler))
+	r.Handle("/{coin}/{address}/usd.svg", http.HandlerFunc(USDBadgeHandler))
+
 	return r
 }
 
@@ -191,6 +252,20 @@ func ColorToHex(color string) string {
 }
 
 func (b *Badge) Clean() *Badge {
+	balanceFloat, _ := strconv.ParseFloat(b.Balance, 10)
+	if balanceFloat > 1000 {
+		b.Balance = RenderFloat("#,###.", b.Balance)
+	} else if balanceFloat > 100 {
+		b.Balance = RenderFloat("#,###.#", b.Balance)
+	} else if balanceFloat > 10 {
+		b.Balance = RenderFloat("#,###.##", b.Balance)
+	} else {
+		b.Balance = RenderFloat("#,###.###", b.Balance)
+	}
+	if b.Coin == "USD" {
+		b.Balance = "$" + b.Balance
+	}
+
 	b.LeftSize = (len(b.Label) + 1) * 8
 	b.LeftTextSize = b.LeftSize * 8
 	b.LeftTextX = (b.LeftTextSize / 2) + 60
@@ -199,15 +274,13 @@ func (b *Badge) Clean() *Badge {
 	b.RightTextSize = (b.RightSize * 8) + 40
 	b.RightTextX = (b.RightTextSize / 2) + (b.LeftSize * 2) + b.LeftTextSize + 60
 
-	if b.RightSize < 75 {
-		b.RightSize = 75
-	}
 	b.Width = b.LeftSize + b.RightSize
+
 	return b
 }
 
 func (b *Badge) Normal() *Badge {
-	if b.Token == "" {
+	if b.Token == "" && b.Coin != "USD" {
 		b.Balance = CryptoBalance(b.Coin, b.Address)
 	}
 	rightColor := "97CA00"
@@ -231,6 +304,7 @@ func (b *Badge) Normal() *Badge {
 		LeftColor:  "555555",
 		RightColor: rightColor,
 	}
+	fmt.Println(badge.Balance)
 	return badge.Clean()
 }
 
@@ -284,6 +358,52 @@ func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
 		Type:       badgeType,
 		RightColor: color,
 	}
+
+	badgeSvg := badge.Normal()
+
+	w.Header().Set("Content-Type", "image/svg+xml")
+	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	temp.Execute(w, badgeSvg)
+}
+
+func USDBadgeHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	coin, _ := vars["coin"]
+	address, _ := vars["address"]
+	badgeType, _ := vars["type"]
+	color := r.FormValue("color")
+	label := r.FormValue("label")
+
+	temp := template.New("svg")
+	temp.Parse(string(svgData))
+
+	usd := CoinToUSD(coin)
+
+	var balance string
+	if coin == "token" {
+		balance, _, _ = TokenBalance(coin, address)
+	} else {
+		balance = CryptoBalance(coin, address)
+	}
+
+	fmt.Println(usd, balance)
+
+	balFloat, _ := strconv.ParseFloat(balance, 10)
+	usdBalance := usd * balFloat
+	usdString := fmt.Sprintf("%0.3f", usdBalance)
+
+	fmt.Printf("%v\n", usdString)
+
+	badge := &Badge{
+		Coin:       "USD",
+		Address:    address,
+		Balance:    usdString,
+		Label:      label,
+		Type:       badgeType,
+		RightColor: color,
+	}
+
+	fmt.Println(badge.Coin)
 
 	badgeSvg := badge.Normal()
 
