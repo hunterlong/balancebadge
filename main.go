@@ -136,34 +136,72 @@ type Badge struct {
 	RightTextX    int
 }
 
+func ColorToHex(color string) string {
+	var hex string
+	switch color {
+	case "green":
+		hex = "32c12c"
+	case "teal":
+		hex = "009888"
+	case "indigo":
+		hex = "3e49bb"
+	case "blue":
+		hex = "526eff"
+	case "purple":
+		hex = "7f4fc9"
+	case "lightgreen":
+		hex = "87c735"
+	case "lime":
+		hex = "cde000"
+	case "lightblue":
+		hex = "00a5f9"
+	case "cyan":
+		hex = "00bcd9"
+	case "darkpurple":
+		hex = "682cbf"
+	case "yellow":
+		hex = "ffef00"
+	case "orange":
+		hex = "ff9a00"
+	case "lightred":
+		hex = "ff9a00"
+	case "brown":
+		hex = "7c5547"
+	case "bluegrey":
+		hex = "5f7d8e"
+	case "amber":
+		hex = "ffcd00"
+	case "darkorange":
+		hex = "ff5500"
+	case "red":
+		hex = "d40c00"
+	case "darkbrown":
+		hex = "50342c"
+	case "grey":
+		hex = "9e9e9e"
+	case "white":
+		hex = "ffffff"
+	case "black":
+		hex = "000000"
+	default:
+		hex = color
+	}
+
+	return hex
+}
+
 func (b *Badge) Clean() *Badge {
-	b.LeftSize = (len(b.Label)+1) * 8
+	b.LeftSize = (len(b.Label) + 1) * 8
 	b.LeftTextSize = b.LeftSize * 8
 	b.LeftTextX = (b.LeftTextSize / 2) + 60
-
-	//leftSum := b.LeftTextSize + b.LeftSize + b.LeftTextX
-
-	//fmt.Println("LEFT  ", b.LeftSize, b.LeftTextSize, b.LeftTextX, leftSum)
 
 	b.RightSize = (len(b.Balance) + len(b.Coin) + 1) * 8
 	b.RightTextSize = (b.RightSize * 8) + 40
 	b.RightTextX = (b.RightTextSize / 2) + (b.LeftSize * 2) + b.LeftTextSize + 60
 
-	//fmt.Println("RIGHT ", b.RightSize, b.RightTextSize, b.RightTextX)
-
 	if b.RightSize < 75 {
 		b.RightSize = 75
 	}
-	//if b.RightTextSize < 640 {
-	//	b.RightTextSize = 640
-	//}
-	//
-	//if b.RightTextX < 980 {
-	//	b.RightTextX = 980
-	//}
-	//if b.RightTextX > 1090 {
-	//	b.RightTextX = 1090
-	//}
 	b.Width = b.LeftSize + b.RightSize
 	return b
 }
@@ -175,7 +213,7 @@ func (b *Badge) Normal() *Badge {
 	rightColor := "97CA00"
 
 	if b.RightColor != "" {
-		rightColor = b.RightColor
+		rightColor = ColorToHex(b.RightColor)
 	}
 
 	label := b.Address[0:7]
