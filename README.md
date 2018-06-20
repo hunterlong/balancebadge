@@ -12,6 +12,10 @@ You can also have a badge automatically converted into USD with the image below.
 ```
 https://img.balancebadge.io/<COIN>/<ADDRESS>/usd.svg
 ```
+But wait, there's more! Easily get a ERC20 Token Balance Badge with your current balance.
+```
+https://img.balancebadge.io/token/<TOKEN>/<ADDRESS>.svg
+```
 
 ## Bitcoin and Litecoin Badges
 - ![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg) `https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg`
