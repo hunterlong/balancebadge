@@ -19,25 +19,28 @@ https://img.balancebadge.io/token/<TOKEN>/<ADDRESS>.svg
 ```
 
 ## Bitcoin and Litecoin Badges
+Balance Badge will quickly serve you a badge with up-to-date balance and address information. Click on a badge below to see how you can insert your own address.
 - [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
 - [![Balance](https://img.balancebadge.io/btctest/2N8GSUUX8rzQdfTw5NvsBNMDB6UhJK2HnAa.svg)](https://img.balancebadge.io/btctest/2N8GSUUX8rzQdfTw5NvsBNMDB6UhJK2HnAa.svg)
 - [![Balance](https://img.balancebadge.io/ltc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/ltc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
 - [![Balance](https://img.balancebadge.io/ltctest/mwumPyMeruBENo92MdQ2hTngzvALf9w84c.svg)](https://img.balancebadge.io/ltctest/mwumPyMeruBENo92MdQ2hTngzvALf9w84c.svg)
 
 ## Ethereum and ERC20 Token Badges
+Balance Badge also works on Ethereum's ERC20 Tokens using TokenBalance.com API. 
 - [![Balance](https://img.balancebadge.io/eth/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/eth/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
 - [![Balance](https://img.balancebadge.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52/0x751b934e7496e437503d74d0679a45e49c0b7071.svg)](https://img.balancebadge.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52/0x751b934e7496e437503d74d0679a45e49c0b7071.svg)
 - [![Balance](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
 - [![Balance](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx/usd.svg)](https://img.balancebadge.io/ropsten/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx/usd.svg)
 
 ## Customize Badge
-You can send parameters with the SVG request to customize your badge on the fly. 
+You can send parameters with the SVG request to customize your badge on the fly. You can change the badge text on the left and change the color using hex code or simple english.
 - [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg?label=MtGOX)](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg?label=MtGOX) `?label=MtGox` Text for the left side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121) `?color=ffb121` Hex color for the right side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red) `?color=red` 
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=blue)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=blue) `?color=blue` 
 
 ### Accepted Cryptocurrencies
+We run our own blockchain servers to serve address balances. Below is a list of cryptocurrencies we currenly accept, and other coins to be added in the future.
 - [x] Bitcoin `btc`
 - [x] Ethereum `eth`
 - [x] Litecoin `ltc`
@@ -45,6 +48,9 @@ You can send parameters with the SVG request to customize your badge on the fly.
 - [x] Ethereum Ropsten Testnet `ropsten`
 - [x] Bitcoin Testnet `btctest`
 - [x] Litecoin Testnet `ltctest`
+- [ ] Dash
+- [ ] Ripple
+- [ ] Bitcoin Cash
 
 
 
