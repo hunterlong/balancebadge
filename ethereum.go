@@ -3,9 +3,11 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"io/ioutil"
 	"math/big"
 	"strconv"
 )
@@ -53,4 +55,38 @@ func Clean(newNum string) string {
 func BigPow(a, b int64) *big.Int {
 	r := big.NewInt(a)
 	return r.Exp(r, big.NewInt(b), nil)
+}
+
+func TokenBalance(token, address string) (string, string, error) {
+	var url string
+	url = fmt.Sprintf("https://api.tokenbalance.com/token/%v/%v", token, address)
+	resp, err := httpGet(url, "GET", []byte(""))
+	if err != nil {
+		return "0", "", err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "0", "", err
+	}
+
+	var tokenBalance TokenBalanceResponse
+	json.Unmarshal(body, &tokenBalance)
+
+	amount, err := strconv.ParseFloat(tokenBalance.Balance, 10)
+	if err != nil {
+		return "0", "", err
+	}
+
+	return fmt.Sprintf("%0.3f", amount), tokenBalance.Symbol, err
+}
+
+type TokenBalanceResponse struct {
+	Name       string `json:"name"`
+	Wallet     string `json:"wallet"`
+	Symbol     string `json:"symbol"`
+	Balance    string `json:"balance"`
+	EthBalance string `json:"eth_balance"`
+	Decimals   int    `json:"decimals"`
+	Block      int    `json:"block"`
 }

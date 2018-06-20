@@ -75,6 +75,7 @@ func Router() *mux.Router {
 	r := mux.NewRouter()
 	r.Handle("/", http.HandlerFunc(IndexHandler))
 	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
+	r.Handle("/token/{token}/{address}.svg", http.HandlerFunc(TokenBadgeHandler))
 	return r
 }
 
@@ -118,6 +119,7 @@ func CryptoBalance(coin, address string) string {
 
 type Badge struct {
 	Coin          string
+	Token         string
 	Address       string
 	Balance       string
 	Label         string
@@ -126,14 +128,50 @@ type Badge struct {
 	Height        int
 	LeftColor     string
 	LeftSize      int
+	LeftTextSize  int
+	LeftTextX     int
 	RightColor    string
 	RightSize     int
 	RightTextSize int
 	RightTextX    int
 }
 
+func (b *Badge) Clean() *Badge {
+	b.LeftSize = len(b.Label) * 9
+	b.LeftTextSize = (b.LeftSize * 9) - 65
+	b.LeftTextX = (b.LeftTextSize / 2) + 60
+
+	//leftSum := b.LeftTextSize + b.LeftSize + b.LeftTextX
+
+	fmt.Println("LEFT  ", b.LeftSize, b.LeftTextSize, b.LeftTextX)
+
+	b.RightSize = (len(b.Balance) + len(b.Coin)) * 10
+	b.RightTextSize = b.RightSize * 8
+	b.RightTextX = b.LeftTextSize + 510
+
+	fmt.Println("RIGHT ", b.RightSize, b.RightTextSize, b.RightTextX)
+
+	if b.RightSize < 75 {
+		b.RightSize = 75
+	}
+	//if b.RightTextSize < 640 {
+	//	b.RightTextSize = 640
+	//}
+	//
+	//if b.RightTextX < 980 {
+	//	b.RightTextX = 980
+	//}
+	//if b.RightTextX > 1090 {
+	//	b.RightTextX = 1090
+	//}
+	b.Width = b.LeftSize + b.RightSize
+	return b
+}
+
 func (b *Badge) Normal() *Badge {
-	balance := CryptoBalance(b.Coin, b.Address)
+	if b.Token == "" {
+		b.Balance = CryptoBalance(b.Coin, b.Address)
+	}
 	rightColor := "97CA00"
 
 	if b.RightColor != "" {
@@ -141,43 +179,53 @@ func (b *Badge) Normal() *Badge {
 	}
 
 	label := b.Address[0:7]
-
 	if b.Label != "" {
 		label = b.Label
 	}
 
-	rightSize := len(balance) * 11
-	rightTextSize := len(balance) * 98
-	rightTextX := len(balance) * 130
-
-	if rightSize < 67 {
-		rightSize = 67
+	badge := &Badge{
+		Coin:       strings.ToUpper(b.Coin),
+		Address:    b.Address[0:7],
+		Balance:    b.Balance,
+		Label:      label,
+		Type:       b.Type,
+		Height:     20,
+		LeftColor:  "555555",
+		RightColor: rightColor,
 	}
+	return badge.Clean()
+}
 
-	if rightTextSize < 560 {
-		rightTextSize = 560
-	}
+func TokenBadgeHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	token, _ := vars["token"]
+	address, _ := vars["address"]
+	badgeType, _ := vars["type"]
+	color := r.FormValue("color")
+	label := r.FormValue("label")
+	temp := template.New("svg")
+	temp.Parse(string(svgData))
 
-	if rightTextX < 925 {
-		rightTextX = 925
+	balance, symbol, err := TokenBalance(token, address)
+	if err != nil {
+		panic(err)
 	}
 
 	badge := &Badge{
-		Coin:          strings.ToUpper(b.Coin),
-		Address:       b.Address[0:7],
-		Balance:       balance,
-		Label:         label,
-		Type:          b.Type,
-		Height:        20,
-		LeftColor:     "555555",
-		LeftSize:      60,
-		RightColor:    rightColor,
-		RightSize:     rightSize,
-		RightTextSize: rightTextSize,
-		RightTextX:    rightTextX,
+		Coin:       symbol,
+		Token:      token,
+		Balance:    balance,
+		Address:    address,
+		Label:      label,
+		Type:       badgeType,
+		RightColor: color,
 	}
-	badge.Width = badge.LeftSize + badge.RightSize
-	return badge
+
+	badgeSvg := badge.Normal()
+
+	w.Header().Set("Content-Type", "image/svg+xml")
+	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	temp.Execute(w, badgeSvg)
 }
 
 func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {

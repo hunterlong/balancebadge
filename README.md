@@ -10,7 +10,7 @@ https://img.balancebadge.io/<COIN>/<ADDRESS>.svg
 ### Accepted Cryptocurrencies
 - [x] Bitcoin `btc` [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://blockchain.info/address/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx)
 - [x] Ethereum `eth` [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg)](https://etherscan.io/address/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f)
-- [ ] Litecoin `ltc`
+- [x] Litecoin `ltc`
 - [ ] ERC20 Tokens `token`
 
 ## Customize Badge
