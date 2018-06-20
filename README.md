@@ -5,7 +5,7 @@
 [![Balance](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57.svg?label=Donations&color=green)](https://img.balancebadge.io/eth/0x9eA0C535B3eB166454c8ccBabA86850C8Df3ee57.svg?label=Donations&color=green) [![Balance](https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue)](https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x4f70dc5da5acf5e71905c3a8473a6d8a7e7ba4c5.svg?color=lightblue) [![Balance](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green)](https://img.balancebadge.io/eth/0x8d12a197cb00d4747a1fe03395095ce2a5cc6819.svg?label=EtherDelta&color=green) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue)](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B.svg?label=Vitalik&color=lightblue) [![Balance](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)](https://img.balancebadge.io/eth/0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B/usd.svg?label=Vitalik&color=orange)
 
 ## Badge URL
-You can easily format a badge by inserting your Coin type and the address. [![Balance](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)](https://img.balancebadge.io/btc/1LhWMukxP6QGhW6TMEZRcqEUW2bFMA4Rwx.svg)
+You can easily format a badge by inserting your Coin type and the address. [![Balance](https://img.balancebadge.io/btc/1Lk1p9yr2StBnGFtMeqnLHpf8oGL3WdeBM.svg)](https://img.balancebadge.io/btc/1Lk1p9yr2StBnGFtMeqnLHpf8oGL3WdeBM.svg)
 ```
 https://img.balancebadge.io/<COIN>/<ADDRESS>.svg
 ```
@@ -38,6 +38,7 @@ You can send parameters with the SVG request to customize your badge on the fly.
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=ffb121) `?color=ffb121` Hex color for the right side of the badge
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=red) `?color=red` 
 - [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=blue)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=blue) `?color=blue` 
+- [![Balance](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?label=Awesome&color=darkpurple)](https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?label=Awesome&color=darkpurple) `?label=Awesome&color=darkpurple` 
 
 ### Accepted Cryptocurrencies
 We run our own blockchain servers to serve address balances. Below is a list of cryptocurrencies we currenly accept, and other coins to be added in the future.
