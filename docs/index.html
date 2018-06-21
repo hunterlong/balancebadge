@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Balance Badge</title>
+    <meta name="keywords" content="badges, bitcoin, ethereum, litecoin, erc20, tokens, token balance"/>
+    <meta name="description" content="SVG Badges for your Bitcoin, Litecoin, Ethereum and ERC20 Token Balances."/>
 </head>
 <body>
 
@@ -33,74 +35,71 @@
     </div>
 
     <form class="col-lg-12 col-sm-12 mt-5">
+
         <div class="row">
-            <div class="col-lg-7 col-sm-12">
+            <div class="col-lg-6 col-sm-12">
                 <input id="address" type="text" class="form-control" placeholder="Address">
             </div>
-            <div class="col-lg-3 col-sm-12 mt-sm-3">
+            <div class="col-lg-3 col-sm-12">
                 <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="coin">
-                    <option selected>Choose Coin...</option>
+                    <option value="" selected>Coin</option>
                     <option value="btc">Bitcoin</option>
-                    <option value="ltc">Litecoin</option>
                     <option value="eth">Ethereum</option>
+                    <option value="ltc">Litecoin</option>
+                    <option value="btctest">Bitcoin Testnet</option>
+                    <option value="ltctest">Litecoin Testnet</option>
+                    <option value="ropsten">Ethereum Testnet</option>
                 </select>
             </div>
-            <div class="col-lg-2 col-sm-12">
+            <div class="col-lg-3 col-sm-12">
                 <button id="create_badge" class="btn btn-primary btn-block">Create</button>
             </div>
         </div>
     </form>
 
 
-    <div class="col-12 d-none mt-3" id="render_img">
+    <div class="col-12 d-none mt-4" id="render_img">
 
         <div class="row">
 
             <div class="col-12 text-center mb-2" id="show_badge">
-
                 <a target="_blank" href="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg">
                     <img src="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg">
                 </a>
-
             </div>
 
-        <div class="col-6">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">HTML</label>
-                <textarea id="html" class="form-control small" id="exampleFormControlTextarea1" rows="2">
-                 <a href="https://etherscan.io/address/0x6697430135bac88c84217dbe8719dab9adef7a7e">
-                    <img src="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg">
-                </a>
-                </textarea>
-            </div>
-        </div>
 
-        <div class="col-6">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Markup</label>
-                <textarea id="markup" class="form-control" id="exampleFormControlTextarea1" rows="2">
-                    ![Travis](https://img.shields.io/travis/USER/REPO.svg)
-                </textarea>
-            </div>
-        </div>
+            <table class="table mt-3">
+                <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Source</th>
+                </tr>
+                </thead>
+                <tbody>
 
-        <div class="col-6">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">reStructuredText</label>
-                <textarea id="restruct" class="form-control" id="exampleFormControlTextarea1" rows="2">
-                    .. image:: https://img.shields.io/travis/USER/REPO.svg   :alt: Travis
-                </textarea>
-            </div>
-        </div>
+                <tr>
+                    <td>HTML</td>
+                    <td><input onclick="this.select();" id="html_source" type="text" class="form-control"></td>
+                </tr>
 
-        <div class="col-6">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">AsciiDoc</label>
-                <textarea id="ascii" class="form-control" id="exampleFormControlTextarea1" rows="2">
-                    image:https://img.shields.io/travis/USER/REPO.svg[Travis]
-                </textarea>
-            </div>
-        </div>
+                <tr>
+                    <td>Markup</td>
+                    <td><input onclick="this.select();" id="markup_source" type="text" class="form-control"></td>
+                </tr>
+
+                <tr>
+                    <td>reStructuredText</td>
+                    <td><input onclick="this.select();" id="restruct_source" type="text" class="form-control"></td>
+                </tr>
+
+                <tr>
+                    <td>AsciiDoc</td>
+                    <td><input onclick="this.select();" id="ascii_source" type="text" class="form-control"></td>
+                </tr>
+
+                </tbody>
+            </table>
 
         </div>
     </div>
@@ -178,7 +177,14 @@
             </td>
             <td>Litecoin to USD Badge</td>
         </tr>
-
+        <tr>
+            <td>
+                <a target="_blank" href="https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x2c70d87ae710b1174ee8c4e2916ea73b789eb37f/usd.svg">
+                    <img src="https://img.balancebadge.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac/0x2c70d87ae710b1174ee8c4e2916ea73b789eb37f/usd.svg">
+                </a>
+            </td>
+            <td>ERC20 Token USD Badge (STORJ)</td>
+        </tr>
         <tr>
             <td>
                 <a target="_blank" href="https://img.balancebadge.io/eth/0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f.svg?color=cyan">

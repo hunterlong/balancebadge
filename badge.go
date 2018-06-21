@@ -93,7 +93,6 @@ func (b *Badge) TokenBadge() *Badge {
 	return b
 }
 
-
 func (b *Badge) Cache() *Badge {
 	switch b.Coin {
 	case "BTC":
