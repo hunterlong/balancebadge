@@ -1,9 +1,28 @@
 package main
 
 import (
+	"fmt"
 	"math"
+	"os"
 	"strconv"
+	"time"
 )
+
+func GetEnv() {
+	BTCapi = os.Getenv("BTC")
+	BTCTESTapi = os.Getenv("BTCTEST")
+	LTCapi = os.Getenv("LTC")
+	LTCTESTapi = os.Getenv("LTCTEST")
+	ETHapi = os.Getenv("ETH")
+	ROPSTENapi = os.Getenv("ROPSTEN")
+}
+
+func CoinMarketCapTicker() {
+	defer CoinMarketCapTicker()
+	fmt.Println("Loading Coin Market Cap Rates")
+	FetchCoinMarketCap()
+	time.Sleep(5 * time.Minute)
+}
 
 var renderFloatPrecisionMultipliers = [10]float64{
 	1,

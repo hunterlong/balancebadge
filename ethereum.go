@@ -17,6 +17,19 @@ var (
 	ropsten *ethclient.Client
 )
 
+func LoadEthBlockchains() error {
+	var err error
+	eth, err = ethclient.Dial(ETHapi)
+	if err != nil {
+		return err
+	}
+	ropsten, err = ethclient.Dial(ROPSTENapi)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
 func EthBalance(api *ethclient.Client, address string) string {
 	balance, _ := api.BalanceAt(context.TODO(), common.HexToAddress(address), nil)
 	amount := BigIntDecimal(balance, 18)
@@ -62,31 +75,21 @@ func TokenBalance(token, address string) (string, string, error) {
 	url = fmt.Sprintf("https://api.tokenbalance.com/token/%v/%v", token, address)
 	resp, err := httpGet(url, "GET", []byte(""))
 	if err != nil {
-		return "0", "", err
+		return "0", "ERR", err
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "0", "", err
+		return "0", "ERR", err
 	}
-
 	var tokenBalance TokenBalanceResponse
-	json.Unmarshal(body, &tokenBalance)
-
+	err = json.Unmarshal(body, &tokenBalance)
+	if err != nil {
+		return "0", "ERR", err
+	}
 	amount, err := strconv.ParseFloat(tokenBalance.Balance, 10)
 	if err != nil {
-		return "0", "", err
+		return "0", "ERR", err
 	}
-
 	return fmt.Sprintf("%0.3f", amount), tokenBalance.Symbol, err
-}
-
-type TokenBalanceResponse struct {
-	Name       string `json:"name"`
-	Wallet     string `json:"wallet"`
-	Symbol     string `json:"symbol"`
-	Balance    string `json:"balance"`
-	EthBalance string `json:"eth_balance"`
-	Decimals   int    `json:"decimals"`
-	Block      int    `json:"block"`
 }
