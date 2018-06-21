@@ -68,7 +68,7 @@ func (b *Badge) Serve(w http.ResponseWriter, r *http.Request) {
 	load := time.Now().Sub(b.start)
 	fmt.Printf("%v | %v | %v | %v | %v | %v | %v\n", time.Now().Format(time.RFC3339), load, r.URL.Path, b.Coin, b.FullAddress, r.RemoteAddr, r.Header.Get("X-Forwarded-For"))
 	w.Header().Set("Content-Type", "image/svg+xml")
-	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	w.Header().Set("Cache-Control", b.cache)
 	if b.error == nil {
 		w.WriteHeader(http.StatusOK)
 	} else {

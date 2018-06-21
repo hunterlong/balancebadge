@@ -93,6 +93,21 @@ func (b *Badge) TokenBadge() *Badge {
 	return b
 }
 
+
+func (b *Badge) Cache() *Badge {
+	switch b.Coin {
+	case "BTC":
+		b.cache = "public, max-age=900"
+	case "LTC":
+		b.cache = "public, max-age=600"
+	case "ETH":
+		b.cache = "public, max-age=120"
+	default:
+		b.cache = "no-cache, no-store, must-revalidate"
+	}
+	return b
+}
+
 func (b *Badge) Clean() *Badge {
 	balanceFloat, _ := strconv.ParseFloat(b.Balance, 10)
 	if balanceFloat > 1000 {
@@ -114,5 +129,5 @@ func (b *Badge) Clean() *Badge {
 	b.RightTextSize = (b.RightSize * 8) + 40
 	b.RightTextX = (b.RightTextSize / 2) + (b.LeftSize * 2) + b.LeftTextSize + 60
 	b.Width = b.LeftSize + b.RightSize
-	return b
+	return b.Cache()
 }

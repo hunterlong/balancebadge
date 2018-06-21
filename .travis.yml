@@ -51,4 +51,4 @@ before_script:
 
 script:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then /bin/bash -c ./build.sh; fi
-  - curl -s $DOCKER > /dev/null
+  - curl -s -X POST $DOCKER > /dev/null

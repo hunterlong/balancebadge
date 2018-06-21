@@ -28,6 +28,7 @@ type Badge struct {
 	error         error
 	start         time.Time
 	toCurrency    bool
+	cache         string
 }
 
 type TokenBalanceResponse struct {
