@@ -5,8 +5,16 @@ import (
 	"testing"
 )
 
+func init() {
+	GetEnv()
+	err := LoadEthBlockchains()
+	if err != nil {
+		panic(err)
+	}
+}
+
 func TestEthBalance(t *testing.T) {
-	balance := EthBalance("0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f")
+	balance := EthBalance(eth, "0x004f3e7ffa2f06ea78e14ed2b13e87d710e8013f")
 	t.Log("balance: ", balance)
 	assert.NotZero(t, balance)
 }
