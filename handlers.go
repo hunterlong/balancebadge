@@ -13,9 +13,9 @@ func Router() *mux.Router {
 	r := mux.NewRouter()
 	r.Handle("/", http.HandlerFunc(IndexHandler))
 	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
-	r.Handle("/{coin}/{address}/usd.svg", http.HandlerFunc(USDBadgeHandler))
+	r.Handle("/{coin}/{address}/{function}.svg", http.HandlerFunc(USDBadgeHandler))
 	r.Handle("/token/{token}/{address}.svg", http.HandlerFunc(TokenBadgeHandler))
-	r.Handle("/token/{token}/{address}/usd.svg", http.HandlerFunc(TokenBadgeUSDHandler))
+	r.Handle("/token/{token}/{address}/{function}.svg", http.HandlerFunc(TokenBadgeUSDHandler))
 	return r
 }
 
@@ -79,8 +79,11 @@ func (b *Badge) Serve(w http.ResponseWriter, r *http.Request) {
 }
 
 func httpGet(url string, method string, data []byte) (*http.Response, error) {
-	req, _ := http.NewRequest(method, url, bytes.NewBuffer(data))
-	httpClient := &http.Client{}
+	req, err := http.NewRequest(method, url, bytes.NewBuffer(data))
+	if err != nil {
+		return nil, err
+	}
+	httpClient := &http.Client{Timeout: 30 * time.Second}
 	resp, err := httpClient.Do(req)
 	return resp, err
 }

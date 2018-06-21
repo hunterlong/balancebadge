@@ -24,6 +24,7 @@ func FetchCoinMarketCap() {
 	pages := 15
 	var limit int
 	currency := "USD"
+	var tempRates []*MarketRate
 	for i := 0; i <= pages; i++ {
 		url := fmt.Sprintf("https://api.coinmarketcap.com/v2/ticker/?start=%v&convert=%v", limit, currency)
 		res, err := httpGet(url, "GET", nil)
@@ -53,10 +54,11 @@ func FetchCoinMarketCap() {
 				Symbol: t.Symbol,
 				Price:  price,
 			}
-			USDrates = append(USDrates, rate)
+			tempRates = append(tempRates, rate)
 		}
 		limit += 101
 		time.Sleep(1 * time.Second)
 	}
+	USDrates = tempRates
 	fmt.Println("Total Coin Market Cap USD Rates: ", len(USDrates))
 }
