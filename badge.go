@@ -102,8 +102,10 @@ func (b *Badge) Cache() *Badge {
 		b.cache = "public, max-age=600"
 	case "ETH":
 		b.cache = "public, max-age=120"
+	case "USD":
+		b.cache = "public, max-age=600"
 	default:
-		b.cache = "no-cache, no-store, must-revalidate"
+		b.cache = "public, max-age=600"
 	}
 	return b
 }
