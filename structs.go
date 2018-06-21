@@ -3,8 +3,8 @@ package main
 import "time"
 
 type Server struct {
-	Online     bool  `json:"online"`
-	Hour24Hits int64 `json:"24_hour_requests"`
+	Online   bool  `json:"online"`
+	HourHits int64 `json:"hour_requests"`
 }
 
 type Badge struct {

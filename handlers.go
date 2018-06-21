@@ -37,30 +37,30 @@ func StartHTTPServer() {
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	stats := &Server{
-		Online:     true,
-		Hour24Hits: status24HourHits,
+		Online:   true,
+		HourHits: statusHourHits,
 	}
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(stats)
 }
 
 func USDBadgeHandler(w http.ResponseWriter, r *http.Request) {
-	badge := NewBadge(r).Normal().SetBalance().SetUSD().Clean()
+	badge := NewBadge(r).SetBalance().SetUSD().Clean()
 	badge.Serve(w, r)
 }
 
 func TokenBadgeUSDHandler(w http.ResponseWriter, r *http.Request) {
-	badge := NewBadge(r).Normal().TokenBadge().SetUSD().Clean()
+	badge := NewBadge(r).TokenBadge().SetUSD().Clean()
 	badge.Serve(w, r)
 }
 
 func TokenBadgeHandler(w http.ResponseWriter, r *http.Request) {
-	badge := NewBadge(r).Normal().TokenBadge().Clean()
+	badge := NewBadge(r).TokenBadge().Clean()
 	badge.Serve(w, r)
 }
 
 func NormalBadgeHandler(w http.ResponseWriter, r *http.Request) {
-	badge := NewBadge(r).Normal().SetBalance().Clean()
+	badge := NewBadge(r).SetBalance().Clean()
 	badge.Serve(w, r)
 }
 
@@ -75,7 +75,7 @@ func (b *Badge) Serve(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 	svgTemplate.Execute(w, b)
-	status24HourHits++
+	statusHourHits++
 }
 
 func httpGet(url string, method string, data []byte) (*http.Response, error) {

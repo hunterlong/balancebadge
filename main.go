@@ -5,13 +5,13 @@ import (
 )
 
 var (
-	BTCapi           string
-	BTCTESTapi       string
-	LTCapi           string
-	LTCTESTapi       string
-	ETHapi           string
-	ROPSTENapi       string
-	status24HourHits int64
+	BTCapi         string
+	BTCTESTapi     string
+	LTCapi         string
+	LTCTESTapi     string
+	ETHapi         string
+	ROPSTENapi     string
+	statusHourHits int64
 )
 
 func main() {
@@ -27,6 +27,6 @@ func main() {
 
 func HourLoop() {
 	defer HourLoop()
-	status24HourHits = 0
+	statusHourHits = 0
 	time.Sleep(60 * time.Minute)
 }

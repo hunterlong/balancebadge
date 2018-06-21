@@ -29,14 +29,26 @@ func NewBadge(r *http.Request) *Badge {
 	color := r.FormValue("color")
 	label := r.FormValue("label")
 	badge := &Badge{
-		Coin:        vars["coin"],
+		Coin:        strings.ToUpper(vars["coin"]),
 		Token:       vars["token"],
-		Address:     vars["address"],
+		Address:     vars["address"][0:7],
 		FullAddress: vars["address"],
 		Type:        vars["type"],
 		Label:       label,
+		Height:      20,
 		RightColor:  color,
+		LeftColor:   "555555",
 		start:       time.Now(),
+	}
+
+	badge.Label = badge.Address[0:7]
+	if label != "" {
+		badge.Label = label
+	}
+
+	badge.RightColor = defaultColor
+	if color != "" {
+		badge.RightColor = ColorToHex(color)
 	}
 	return badge
 }
@@ -78,29 +90,6 @@ func (b *Badge) TokenBadge() *Badge {
 	}
 	b.Balance = balance
 	b.Coin = symbol
-	return b
-}
-
-func (b *Badge) Normal() *Badge {
-	if b.Token == "" && b.Coin != "USD" {
-		b.Balance = CryptoBalance(b.Coin, b.Address)
-	}
-	rightColor := defaultColor
-	if b.RightColor != "" {
-		rightColor = ColorToHex(b.RightColor)
-	}
-	label := b.Address[0:7]
-	if b.Label != "" {
-		label = b.Label
-	}
-	b.Coin = strings.ToUpper(b.Coin)
-	b.Address = b.Address[0:7]
-	b.Balance = b.Balance
-	b.Label = label
-	b.Type = b.Type
-	b.Height = 20
-	b.LeftColor = "555555"
-	b.RightColor = rightColor
 	return b
 }
 
