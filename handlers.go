@@ -11,11 +11,11 @@ import (
 
 func Router() *mux.Router {
 	r := mux.NewRouter()
-	r.Handle("/", http.HandlerFunc(IndexHandler))
-	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
-	r.Handle("/{coin}/{address}/usd.svg", http.HandlerFunc(USDBadgeHandler))
 	r.Handle("/token/{token}/{address}.svg", http.HandlerFunc(TokenBadgeHandler))
 	r.Handle("/token/{token}/{address}/usd.svg", http.HandlerFunc(TokenBadgeUSDHandler))
+	r.Handle("/{coin}/{address}.svg", http.HandlerFunc(NormalBadgeHandler))
+	r.Handle("/{coin}/{address}/usd.svg", http.HandlerFunc(USDBadgeHandler))
+	r.Handle("/", http.HandlerFunc(IndexHandler))
 	return r
 }
 

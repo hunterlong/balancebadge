@@ -45,13 +45,10 @@ before_install:
 
 before_script:
   - go get github.com/stretchr/testify/assert
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/rendon/testcli
   - go get github.com/karalabe/xgo
-  - go get github.com/GeertJohan/go.rice
-  - go get github.com/GeertJohan/go.rice/rice
   - go get
   - go install
 
 script:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then /bin/bash -c ./build.sh; fi
+  - curl -s $DOCKER > /dev/null
