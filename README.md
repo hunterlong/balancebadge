@@ -20,6 +20,9 @@ But wait, there's more! Easily get a ERC20 Token Balance Badge with your current
 https://img.balancebadge.io/token/<TOKEN>/<ADDRESS>.svg
 ```
 
+<p align="center">
+<a href="https://balancebadge.io"><img alt="balance badge" width="80%" src="https://s3-us-west-2.amazonaws.com/gitimgs/balancebadgesite.gif"></a></p>
+
 ## Bitcoin and Litecoin Badges
 Balance Badge will quickly serve you a badge with up-to-date balance and address information. Click on a badge below to see how you can insert your own address.
 - [![Balance](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg)](https://img.balancebadge.io/btc/12GkAhRm7cZp6WEPgfFKab9oayvb9ZaVoz.svg)
