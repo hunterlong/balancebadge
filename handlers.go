@@ -24,8 +24,8 @@ func StartHTTPServer() {
 	r := Router()
 	srv := &http.Server{
 		Addr:         "0.0.0.0:9090",
-		WriteTimeout: time.Second * 5,
-		ReadTimeout:  time.Second * 5,
+		WriteTimeout: time.Second * 10,
+		ReadTimeout:  time.Second * 10,
 		IdleTimeout:  time.Second * 30,
 		Handler:      r,
 	}

@@ -11,6 +11,11 @@ var (
 	LTCTESTapi     string
 	ETHapi         string
 	ROPSTENapi     string
+	RINKEBYapi     string
+	DASHapi        string
+	ZCASHapi       string
+	BCHapi         string
+	BCHTESTapi     string
 	statusHourHits int64
 )
 

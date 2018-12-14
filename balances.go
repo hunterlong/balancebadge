@@ -16,6 +16,18 @@ func CryptoBalance(coin, address string) string {
 			fmt.Println(err)
 			return "0"
 		}
+	case "BCH":
+		balance, err = BitcoinBalance(BCHapi, address)
+		if err != nil {
+			fmt.Println(err)
+			return "0"
+		}
+	case "BCHTEST":
+		balance, err = BitcoinBalance(BCHTESTapi, address)
+		if err != nil {
+			fmt.Println(err)
+			return "0"
+		}
 	case "BTCTEST":
 		balance, err = BitcoinBalance(BTCTESTapi, address)
 		if err != nil {
@@ -32,10 +44,22 @@ func CryptoBalance(coin, address string) string {
 		if err != nil {
 			return "0"
 		}
+	case "DASH":
+		balance, err = BitcoinBalance(DASHapi, address)
+		if err != nil {
+			return "0"
+		}
+	case "ZCASH":
+		balance, err = BitcoinBalance(ZCASHapi, address)
+		if err != nil {
+			return "0"
+		}
 	case "ETH":
 		balance = EthBalance(eth, address)
 	case "ROPSTEN":
 		balance = EthBalance(ropsten, address)
+	case "RINKEBY":
+		balance = EthBalance(rinkeby, address)
 	default:
 		balance = "0"
 	}

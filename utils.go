@@ -15,6 +15,11 @@ func GetEnv() {
 	LTCTESTapi = os.Getenv("LTCTEST")
 	ETHapi = os.Getenv("ETH")
 	ROPSTENapi = os.Getenv("ROPSTEN")
+	RINKEBYapi = os.Getenv("RINKEBY")
+	DASHapi = os.Getenv("DASH")
+	ZCASHapi = os.Getenv("ZCASH")
+	BCHapi = os.Getenv("BCH")
+	BCHTESTapi = os.Getenv("BCHTEST")
 }
 
 func CoinMarketCapTicker() {

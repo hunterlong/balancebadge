@@ -15,6 +15,7 @@ import (
 var (
 	eth     *ethclient.Client
 	ropsten *ethclient.Client
+	rinkeby *ethclient.Client
 )
 
 func LoadEthBlockchains() error {
@@ -24,6 +25,10 @@ func LoadEthBlockchains() error {
 		return err
 	}
 	ropsten, err = ethclient.Dial(ROPSTENapi)
+	if err != nil {
+		return err
+	}
+	rinkeby, err = ethclient.Dial(RINKEBYapi)
 	if err != nil {
 		return err
 	}
